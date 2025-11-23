@@ -2,8 +2,15 @@
 
 <main>
   <ul id="users">
-    <li>
-      <app-user></app-user>
+    <li *ngFor="let user of users">
+      <app-user
+        [user]="user"
+        (selected)="onSelectedUser($event)"
+      ></app-user>
     </li>
   </ul>
+  <app-tasks *ngIf="userName; else fallback" [name] = "userName"></app-tasks>
+  <ng-template #fallback>
+    <h2>Select a user to see their tasks!</h2>
+  </ng-template>
 </main>
