@@ -22,9 +22,13 @@ interface User {
 export class AppComponent {
   users = DUMMY_USERS;
   title = 'TaskManagement';
-  public userName: string = '';
+  public selectedUserId: string = '';
 
+  get selectedUser() {
+    return this.users.find((user) => user.id === this.selectedUserId);
+  }
+  
   onSelectedUser(id: string) {
-    this.userName = DUMMY_USERS.find(user => user.id === id)?.name!
+    this.selectedUserId = id;
   }
 }

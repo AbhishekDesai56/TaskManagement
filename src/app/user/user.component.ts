@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from './user.model';
 
-interface User {
-  id: string;
-  name: string;
-  avatar: string;  
-}
 
 @Component({
   selector: 'app-user',
@@ -16,13 +12,14 @@ interface User {
 
 export class UserComponent {
   @Input({required: true}) user!: User;
-  @Output() selected = new EventEmitter<string>();
+  @Input({ required: true }) selected!: boolean;
+  @Output() select = new EventEmitter<string>();
 
   get imagePath() {
     return 'assets/users/' + this.user.avatar;
   }
 
   public onSelectedUser() {
-    this.selected.emit(this.user.id);
+    this.select.emit(this.user.id);
   }
 }
