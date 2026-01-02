@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { CommonModule } from "@angular/common";
 import { NewTaskComponent } from "./new-task/new-task.component";
+import { NewTaskData } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -55,5 +56,20 @@ identifyItem(index: number, item: any): any {
 
 onStartAddTask() {
   this.isAddingTask = true;
+}
+
+onCancelAddTask() {
+  this.isAddingTask = false;
+}
+
+onAddTask(taskData: NewTaskData) {
+  this.tasks.unshift({
+    id: new Date().getTime().toString(),
+    userId: this.userId,
+    title: taskData.title,
+    summary: taskData.summary,
+    dueDate: taskData.date
+  });
+  this.isAddingTask = false;
 }
 }
