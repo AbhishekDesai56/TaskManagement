@@ -1,4 +1,4 @@
-<app-new-task (cancel)="onCancelAddTask()" (add)="onAddTask($event)" *ngIf="isAddingTask" />
+<app-new-task [userId] = "userId" (close)="onCloseAddTask()" *ngIf="isAddingTask" />
 
 <section id="tasks">
   <header>
@@ -9,7 +9,7 @@
   </header>
   <ul>
     <li *ngFor="let task of selectedUserTasks; trackBy: identifyItem">
-      <app-task [task]="task" (complete)="onComplete($event)"></app-task>
+      <app-task [task]="task"></app-task>
     </li>
   </ul>
 </section>
